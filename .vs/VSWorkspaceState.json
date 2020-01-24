@@ -1,0 +1,19 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\node_modules",
+    "\\node_modules\\@babel",
+    "\\node_modules\\@babel\\helper-module-transforms",
+    "\\node_modules\\@babel\\helper-module-transforms\\lib",
+    "\\node_modules\\@babel\\plugin-transform-block-scoping",
+    "\\node_modules\\@babel\\plugin-transform-block-scoping\\lib",
+    "\\node_modules\\@babel\\plugin-transform-parameters",
+    "\\node_modules\\@babel\\plugin-transform-parameters\\lib",
+    "\\node_modules\\@babel\\traverse",
+    "\\node_modules\\@babel\\traverse\\lib",
+    "\\node_modules\\@babel\\traverse\\lib\\path",
+    "\\node_modules\\@types",
+    "\\node_modules\\@types\\babel__traverse"
+  ],
+  "PreviewInSolutionExplorer": false
+}
