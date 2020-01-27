@@ -212,9 +212,7 @@ export default function AdminOrders() {
                   <br />
                   <br />
                 </span>,          
-                <span key="key1">
-                  <small className={classesT.tdNumberSmall}>{dishes[j].commentUser}</small>
-                </span>,
+               
                 <span key="key2">
                   <small className={classesT.tdNumberSmall}>{m}</small>
                 </span>,
@@ -259,9 +257,6 @@ export default function AdminOrders() {
                   <br />
                   <br />
                 </span>,          
-                <span key="key1">
-                  <small className={classesT.tdNumberSmall}>{dishes[j].commentUser}</small>
-                </span>,
                 <span key="key2">
                   <small className={classesT.tdNumberSmall}>{m}</small>
                 </span>,
@@ -286,15 +281,14 @@ export default function AdminOrders() {
           color="info"
 
         >
-        <h2 style={{ color: "#fff", fontFamily: "'Dancing Script'" }} className={classes.cardTitle}>Orders Placed</h2>
+        <h2 style={{ color: "#fff", fontFamily: "'Dancing Script'" }} className={classes.cardTitle}>Orders</h2>
 
         </CardHeader>
         <CardBody>
           <Table
             tableHead={[
               "PRODUCT",
-              "COMMENTS",
-              "MESA"         
+              "COSTUMER"         
             ]}
             tableData={crearData()[0]}            
           />      

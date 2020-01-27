@@ -46,7 +46,7 @@ import { async } from "q";
 import SweetAlert from "react-bootstrap-sweetalert";
 import stylesB from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.js";
 const baseUrl = "https://easy-eat-oficial.herokuapp.com"
-const baseUrl2 = "http://localhost:8080"
+const baseUrl2 = "http://localhost:8081"
 const useStyles = makeStyles(styles);
 const useStylesT = makeStyles(stylesT);
 
@@ -157,7 +157,7 @@ export default function CartPage() {
           price : datosF.platos[i].price,
           category: datosF.platos[i].category,
           description: datosF.platos[i].description,
-          commentUser: datosF.platos[i].commentUser,
+          commentUser: "",
           cantidad: 1
         });
       }
@@ -226,9 +226,9 @@ export default function CartPage() {
     // const [price, setPrice] = useState ([]);
 
     useEffect(() => {
-      axios.get(baseUrl + '/cart/obtain-cart/' + localStorage.getItem("mailLogged"))
+      axios.get(baseUrl2 + '/api/cart/obtain-cart/' + localStorage.getItem("mailLogged"))
         .then(response => {
-          const datos = response.data.platos;
+          const datos = response.data;
 
           setData(datos);
           //console.log(data)
@@ -346,9 +346,7 @@ export default function CartPage() {
             <IconButton id={"less" + i} onClick={(event) => lessCart(event.target.id)} style={{ backgroundColor: "#FF4136", color: "#FF4136" }} className={classes.button} aria-label="delete">
 
             </IconButton>
-            {data[i].commentUser == "" ? <div /> : <Button id={data[i].commentUser} onClick={(event) => titleAndTextAlert(event.target.id)} style={{ backgroundColor: "#001f3f", width: "115px" }} round>
-              Your Comments{" "}
-            </Button>}
+           
 
           </span>,
           <span key="key">

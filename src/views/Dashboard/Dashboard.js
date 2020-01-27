@@ -44,7 +44,7 @@ import Snackbar from "components/Snackbar/Snackbar.js";
 
 import AddAlert from "@material-ui/icons/AddAlert";
 const baseUrl = "https://easy-eat-oficial.herokuapp.com"
-const baseUrl2 = "http://localhost:808"
+const baseUrl2 = "http://localhost:8081"
 const useStyles = makeStyles(styles);
 const useStylesT = makeStyles(stylesT);
 
@@ -152,20 +152,17 @@ export default function MenuPage() {
     }
   };
     const addItem = (valor) => {
-      axios.get(baseUrl + '/dish/' + valor)
+      axios.get(baseUrl2 + '/api/product/productName/' + valor)
         .then(response => {
           const datos = response.data;
           console.log(datos)
           setItems([...items, valor])
           
-          axios.post(baseUrl +"/cart/add-cart/" + localStorage.getItem("mailLogged"), {
-            id: datos.id,
+          axios.post(baseUrl2 +"/api/cart/add-product/" + localStorage.getItem("mailLogged"), {
             name: datos.name,
             category: datos.category,
             description: datos.description,
             price: Number(datos.price),
-            commentUser: "",
-            cantidad: 1
           }).then(function (resp) {
             console.log(resp)
             showNotification("tc");

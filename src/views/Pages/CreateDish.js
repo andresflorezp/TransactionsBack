@@ -484,7 +484,7 @@ export default function Widgets(props) {
             <CssTextField
 
               id="outlined-name"
-              label="Dish name"
+              label="Product name"
               onChange={e => setnombre(e.target.value)}
               value={nombre}
               margin="normal"
