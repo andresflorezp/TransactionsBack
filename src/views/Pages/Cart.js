@@ -45,6 +45,8 @@ import IconButton from '@material-ui/core/IconButton';
 import { async } from "q";
 import SweetAlert from "react-bootstrap-sweetalert";
 import stylesB from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.js";
+
+import PayPayu from "./PayPayu"
 const baseUrl = "https://easy-eat-oficial.herokuapp.com"
 const baseUrl2 = "http://localhost:8081"
 const useStyles = makeStyles(styles);
@@ -109,11 +111,11 @@ export default function CartPage() {
           onCancel={() => cancelDetele()}
           confirmBtnCssClass={classesB.button + " " + classesB.success}
           cancelBtnCssClass={classesB.button + " " + classesB.danger}
-          confirmBtnText="Yes, Send to Kitchen!"
+          confirmBtnText="Yes, Buy!"
           cancelBtnText="Cancel"
           showCancel
         >
-          At this moment you will send your order to the kitchen
+          Start to Pay
         </SweetAlert>
       );
     };
@@ -404,10 +406,7 @@ export default function CartPage() {
           />
         </CardBody>
         <CardFooter className={classes.justifyContentCenter}>
-          <Button onClick={warningWithConfirmAndCancelMessage} style={{ backgroundColor: "#2ECC40" }} round>
-            Send To Kitchen{" "}
-            <KeyboardArrowRight className={classesT.icon} />
-          </Button>
+          <PayPayu/>
           <h4>Total:{total}</h4>
         </CardFooter>
       </Card>

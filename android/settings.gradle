@@ -1,0 +1,3 @@
+rootProject.name = 'material-dashboard-pro-react'
+
+include ':app'
