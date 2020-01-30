@@ -51,7 +51,7 @@ const useStylesT = makeStyles(stylesT);
 
 export default function AdminOrders() {
   const baseUrl = "https://easy-eat-oficial.herokuapp.com"
-  const baseUrl2 = "http://localhost:8080"
+  const baseUrl2 = "http://localhost:8081"
   const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
   setTimeout(function () {
     setCardAnimation("");
@@ -144,7 +144,7 @@ export default function AdminOrders() {
     // const [price, setPrice] = useState([]);
 
     useEffect(() => {
-      axios.get(baseUrl2 + '/api/transactions/all-transactions')
+      axios.get(baseUrl2 + '/api/transaction/all-transactions')
         .then(response => {
           console.log(response.data)
           const datos = response.data;
@@ -162,9 +162,9 @@ export default function AdminOrders() {
       return target.replace(new RegExp(search, 'g'), replacement);
     };
 
-    function modifyOrder(order){      
-      axios.put(baseUrl + '/order/modifyOrder/'+order)
-        .then(response => {          
+    function modifyOrder(order) {
+      axios.put(baseUrl + '/order/modifyOrder/' + order)
+        .then(response => {
           alert("Se modifico la orden correctamente")
 
         })
@@ -173,135 +173,82 @@ export default function AdminOrders() {
         })
 
     }
-  
-    function crearData(){
+
+    function crearData() {
 
       const n = data.length;
-      const tabla=[]
-      const tabla2=[]
-      const temp=[]  
-      const tempAux=[]            
-      for (var x = 0; x < n; x++) {       
-          if(data[x].entregado == false){
-            const Carrito = data[x].carrito;    
-            const temp2=[]    
-            const dishes=[]  
-            for (var i = 0; i < Carrito.platos.length ; i++) {
-              dishes.push(Carrito.platos[i]);            
-            }
-            
-            var N = dishes.length;
-            
-            for (var j = 0; j < N; j++) {  
-              const temp=[]           
-              const ur = "pass"     
-              const m =""
-              if(data[x].tipo == "PreOrder"){
-                m= data[x].tipo;
-                m= m + " / "+ Carrito.dueño
-              }    
-              else{
-                m= data[x].mesa;
-              }        
-              
-              temp.push(              
-                <span key="key">
-                  <a href="#jacket" className={classesT.tdNameAnchor}>
-                    {dishes[j].name}
-                  </a>
-                  <br />
-                  <br />
-                </span>,          
-               
-                <span key="key2">
-                  <small className={classesT.tdNumberSmall}>{m}</small>
-                </span>,
-              )                
-              tabla.push(temp)    
-            }
-            temp2.push(              
-              <center>
-              <br />  
-                <Button id={data[x].id}  onClick={(event) => modifyOrder(event.target.id)} color="info" round>                            
-                </Button>
-              </center>,
-            )        
-            tabla.push(temp2)  
-          } 
-          else{
-            const Carrito = data[x].carrito;                  
-            const dishes=[]  
-            for (var i = 0; i < Carrito.platos.length ; i++) {
-              dishes.push(Carrito.platos[i]);            
-            }
-            
-            var N = dishes.length;
-            
-            for (var j = 0; j < N; j++) {  
-              const tempAux=[]           
-              const ur = "pass"     
-              const m =""
-              if(data[x].tipo == "PreOrder"){
-                m= data[x].tipo;
-                m= m + " / "+ Carrito.dueño
-              }    
-              else{
-                m= data[x].mesa;
-              }        
-              
-              tempAux.push(              
-                <span key="key">
-                  <a href="#jacket" className={classesT.tdNameAnchor}>
-                    {dishes[j].name}
-                  </a>
-                  <br />
-                  <br />
-                </span>,          
-                <span key="key2">
-                  <small className={classesT.tdNumberSmall}>{m}</small>
-                </span>,
-              )                
-              tabla2.push(tempAux)
-            }
-          }                 
-           
+      const tabla = []
+      const tabla2 = []
+      
+      const tempAux = []
+
+      for (var j = 0; j < n; j++) {
+        const temp = []
+        temp.push(
+          <span key="key">
+            <a href="#jacket" className={classesT.tdNameAnchor}>
+              {data[j].whoTransaction}
+            </a>
+            <br />
+            <br />
+          </span>
+
+        )
+        temp.push(<span key="key2">
+          {data[j].state == "APPROVED" ? <small style={{color:"green"}} className={classesT.tdNumberSmall}>{data[j].state}</small> :<small style={{color:"red"}} className={classesT.tdNumberSmall}>{data[j].state}</small>}
+          
+        </span>)
+        temp.push(<span key="key">
+          <a href="#jacket" className={classesT.tdNameAnchor}>
+            {data[j].numeroOrden}
+          </a>
+          <br />
+          <br />
+        </span>)
+        temp.push(<span key="key2">
+          <small className={classesT.tdNumberSmall}>{data[j].valueTransaction}</small>
+        </span>)
+        tabla.push(temp)
       }
-      const tablas=[]
-      tablas.push(tabla,tabla2);
+      //TABLA 1
+
+
+      const tablas = []
+      tablas.push(tabla, tabla2);
       return tablas;
     }
     crearData()
 
     return (
       <div>
-      <Card >
-        
-        <CardHeader
-          className={`${classes.cardHeader} ${classes.textCenter}`}
-          color="info"
+        <Card >
 
-        >
-        <h2 style={{ color: "#fff", fontFamily: "'Dancing Script'" }} className={classes.cardTitle}>Orders</h2>
+          <CardHeader
+            className={`${classes.cardHeader} ${classes.textCenter}`}
+            color="info"
 
-        </CardHeader>
-        <CardBody>
-          <Table
-            tableHead={[
-              "NAME USER",
-              "STATE",
-              "ORDER NUMBER",
-              "VALUE TRANSACTION"
+          >
+            <h2 style={{ color: "#fff", fontFamily: "'Dancing Script'" }} className={classes.cardTitle}>Orders</h2>
 
-            ]}
-            tableData={crearData()[0]}            
-          />      
-          <br></br>          
-        </CardBody>   
-             
-      </Card> 
-     
+          </CardHeader>
+          <CardBody>
+            <Table
+              tableHead={[
+                "NAME USER",
+                "STATE",
+                "ORDER NUMBER",
+                "VALUE TRANSACTION"
+
+              ]}
+              tableData={crearData()[0]}
+            />
+            <br></br>
+          </CardBody>
+
+        </Card>
+
       </div>
-      
+
     );
   };
 
@@ -325,4 +272,4 @@ export default function AdminOrders() {
       </GridContainer>
     </div>
   );
-  }
+}
