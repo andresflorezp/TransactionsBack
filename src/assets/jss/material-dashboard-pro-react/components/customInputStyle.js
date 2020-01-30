@@ -71,7 +71,7 @@ const customInputStyle = {
     }
   },
   input: {
-    color: grayColor[14],
+    color: "white",
     height: "unset",
     "&,&::placeholder": {
       fontSize: "14px",

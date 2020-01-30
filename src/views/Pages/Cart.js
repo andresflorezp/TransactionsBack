@@ -134,8 +134,40 @@ export default function CartPage() {
       );
     };
 
+    const successClose = (respuesta) => {
+      setAlert(
+        <SweetAlert
+          success
+          style={{ display: "block", marginTop: "-100px" }}
+          title="Sent!"
+          onConfirm={() => hideAlert()}
+          onCancel={() => hideAlert()}
+          confirmBtnCssClass={classesB.button + " " + classesB.success}
+        >
+          Your Transaction was APPROVED
+        </SweetAlert>
+      );
+    };
+    const WrongClose = (respuesta) => {
+      setAlert(
+        <SweetAlert
+          danger
+          style={{ display: "block", marginTop: "-100px" }}
+          title="Sent!"
+          onConfirm={() => hideAlert()}
+          onCancel={() => hideAlert()}
+          confirmBtnCssClass={classesB.button + " " + classesB.success}
+        >
+          Your Transaction not was APPROVED
+        </SweetAlert>
+      );
+    };
+
+
+
+
     const titleAndTextAlert = (comments) => {
-      localStorage.setItem("ITEMSA",itemsA)
+      localStorage.setItem("ITEMSA", itemsA)
       setAlert(
         <SweetAlert
           style={{ display: "block", marginTop: "-100px" }}
@@ -148,15 +180,15 @@ export default function CartPage() {
         </SweetAlert>
       );
     };
-     const llenarT = (datosF) =>{
+    const llenarT = (datosF) => {
       var datosDish = [];
-//      console.log(localStorage.getItem("ITEMSA")[0])
+      //      console.log(localStorage.getItem("ITEMSA")[0])
       for (var i = 0; i < datosF.platos.length; i++) {
-        
+
         datosDish.push({
           id: datosF.platos[i].id,
           name: datosF.platos[i].name,
-          price : datosF.platos[i].price,
+          price: datosF.platos[i].price,
           category: datosF.platos[i].category,
           description: datosF.platos[i].description,
           commentUser: "",
@@ -170,28 +202,43 @@ export default function CartPage() {
       setAlert(null);
     };
     const hideAlertDelete = () => {
-      const today = new Date();    
-      //window.location="/pay";
+      const today = new Date();
+      //
       const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + '0' + today.getDate();
-      axios.post(baseUrl2 + "/api/transaction/add-product/" +localStorage.getItem("mailLogged") +"/"+localStorage.getItem("mailLogged")+"/"+total)
+      axios.post(baseUrl2 + "/api/transaction/add-product/" + localStorage.getItem("mailLogged") + "/" + localStorage.getItem("mailLogged") + "/" + total)
         .then(response => {
-          window.location="/user/dashboard";
-          // axios.post(baseUrl + '/cart/empty-cart/' + localStorage.getItem("mailLogged")).then(function (res) {
-          //   setAlert(null);
-          // }).catch(function (er) {
-          //   console.log(er)
-          // });
+          //location.reload();
+          console.log(response.data)
+          if (response.data == "APPROVED") {
+         
+            axios.delete(baseUrl2 + '/api/cart/empty-cart/' + localStorage.getItem("mailLogged")).then(function (res) {
+              hideAlert()
+              successClose()
+              //alert("TU TRANSACCION FUE APROVADA")
+              //window.location="/user/dashboard";
+            }).catch(function (er) {
+              console.log(er)
+            });
+          }
+          else {
+            hideAlert()
+            WrongClose()
+            //alert("TU TRANSACCION NO FUE APROVADA")
+            //window.location="/user/dashboard";
+          
+          }
+
         })
         .catch(function (er) {
           console.log(er)
         });
 
-        
-              
 
-        
+
+
+
     }
-    
+
     const cancelDetele = () => {
       setAlert(
         <SweetAlert
@@ -332,7 +379,7 @@ export default function CartPage() {
             <IconButton id={"less" + i} onClick={(event) => lessCart(event.target.id)} style={{ backgroundColor: "#FF4136", color: "#FF4136" }} className={classes.button} aria-label="delete">
 
             </IconButton>
-           
+
 
           </span>,
           <span key="key">
@@ -390,7 +437,7 @@ export default function CartPage() {
           />
         </CardBody>
         <CardFooter className={classes.justifyContentCenter}>
-        <Button onClick={warningWithConfirmAndCancelMessage} style={{ backgroundColor: "#2ECC40" }} round>
+          <Button onClick={warningWithConfirmAndCancelMessage} style={{ backgroundColor: "#2ECC40" }} round>
             Send To Kitchen{" "}
             <KeyboardArrowRight className={classesT.icon} />
           </Button>

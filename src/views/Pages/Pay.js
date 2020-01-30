@@ -33,7 +33,7 @@ import stylesT from "assets/jss/material-dashboard-pro-react/views/extendedTable
 import "./fuente.css"
 import AddIcon from '@material-ui/icons/Add';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import InfoIcon from '@material-ui/icons/Info'; 
+import InfoIcon from '@material-ui/icons/Info';
 import Car from "@material-ui/icons/Fastfood";
 import IconButton from '@material-ui/core/IconButton';
 import { async } from "q";
@@ -127,7 +127,7 @@ export default function CartPage() {
     };
 
     const titleAndTextAlert = (comments) => {
-      localStorage.setItem("ITEMSA",itemsA)
+      localStorage.setItem("ITEMSA", itemsA)
       setAlert(
         <SweetAlert
           style={{ display: "block", marginTop: "-100px" }}
@@ -140,14 +140,14 @@ export default function CartPage() {
         </SweetAlert>
       );
     };
-     const llenarT = (datosF) =>{
+    const llenarT = (datosF) => {
       var datosDish = [];
       for (var i = 0; i < datosF.platos.length; i++) {
-        
+
         datosDish.push({
           id: datosF.platos[i].id,
           name: datosF.platos[i].name,
-          price : datosF.platos[i].price,
+          price: datosF.platos[i].price,
           category: datosF.platos[i].category,
           description: datosF.platos[i].description,
           commentUser: datosF.platos[i].commentUser,
@@ -165,8 +165,8 @@ export default function CartPage() {
       const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + '0' + today.getDate();
       axios.get(baseUrl + "/cart/obtain-cart/" + localStorage.getItem("mailLogged"))
         .then(response => {
-          const datosF = response.data;          
-          const platoss = llenarT(datosF);          
+          const datosF = response.data;
+          const platoss = llenarT(datosF);
           console.log("YAYAYAYYAYAYAYYAYAYAAYYAYAYAYYAYAYAYAYYAYAYAYAYYAYAYAYAYAYYAYAYA OBTUVO CARRITO")
           axios.post(baseUrl + '/order/create-order', {
             fecha: date,
@@ -174,14 +174,14 @@ export default function CartPage() {
               id: datosF.id,
               platos: platoss,
               dueño: localStorage.getItem("mailLogged"),
-              total:total
+              total: total
             },
-            entregado:false,
+            entregado: false,
             tipo: localStorage.getItem("decideOrder"),
-            mesa : localStorage.getItem("Mesa")
+            mesa: localStorage.getItem("Mesa")
 
           }).
-            then(response => {                
+            then(response => {
               const a = ""
               console.log("YAYAYAYYAYAYAYYAYAYAAYYAYAYAYYAYAYAYAYYAYAYAYAYYAYAYAYAYAYYAYAYA CREO ORDEN")
             })
@@ -189,17 +189,17 @@ export default function CartPage() {
               console.log(er)
             });
 
-        });   
-        axios.post(baseUrl + '/cart/empty-cart/' + localStorage.getItem("mailLogged"))
-            .then(response => {
-                window.location="/user/dashboard";            
-            }).catch(function (er) {
-                console.log(er)
-        });     
-        
-        
+        });
+      axios.post(baseUrl + '/cart/empty-cart/' + localStorage.getItem("mailLogged"))
+        .then(response => {
+          window.location = "/user/dashboard";
+        }).catch(function (er) {
+          console.log(er)
+        });
+
+
     }
-    
+
     const cancelDetele = () => {
       setAlert(
         <SweetAlert
@@ -213,14 +213,14 @@ export default function CartPage() {
           When you're sure, pay. We'll wait for you. :)
         </SweetAlert>
       );
-    };    
+    };
 
     useEffect(() => {
       axios.get(baseUrl + '/cart/obtain-cart/' + localStorage.getItem("mailLogged"))
         .then(response => {
           const datos = response.data.platos;
 
-          setData(datos);          
+          setData(datos);
           const temp = []
           var totalt = 0
           for (var k = 0; k < datos.length; k++) {
@@ -229,7 +229,7 @@ export default function CartPage() {
           }
 
           setItemsA(itemsA.concat(temp))
-          setTotal(totalt)          
+          setTotal(totalt)
 
         })
         .catch(err => {
@@ -249,30 +249,31 @@ export default function CartPage() {
       console.log(itemsA)
       const tabla = []
 
+      if (data != undefined) {
+        var N = data.length;
 
-      var N = data.length;
 
+        for (var i = 0; i < N; i++) {
+          const temp = []
+          const ur = "pass"
+          temp.push(
+            <span key="key">
+              <a href="#jacket" className={classesT.tdNameAnchor}>
+                {data[i].name}
+              </a>
+              <br />
+              <h6>
+                Cantidad: {itemsA[i] == undefined ? <div /> : itemsA[i].cantidad}
+              </h6>
 
-      for (var i = 0; i < N; i++) {
-        const temp = []
-        const ur = "pass"
-        temp.push(
-          <span key="key">
-            <a href="#jacket" className={classesT.tdNameAnchor}>
-              {data[i].name}
-            </a>
-            <br />
-            <h6>
-              Cantidad: {itemsA[i] == undefined ? <div /> : itemsA[i].cantidad}
-            </h6>            
+            </span>,
+            <span key="key">
+              <small className={classesT.tdNumberSmall}>{itemsA[i] == undefined ? <div /> : itemsA[i].precio * itemsA[i].cantidad}$</small>
+            </span>
+          )
+          tabla.push(temp)
 
-          </span>,
-          <span key="key">
-            <small className={classesT.tdNumberSmall}>{itemsA[i] == undefined ? <div /> : itemsA[i].precio * itemsA[i].cantidad}$</small>
-          </span>
-        )
-        tabla.push(temp)
-
+        }
       }
       return tabla;
 
@@ -280,7 +281,7 @@ export default function CartPage() {
     crearData()
 
     return (
-        
+
       <Card >
         <CardHeader
           className={`${classes.cardHeader} ${classes.textCenter}`}
@@ -293,7 +294,7 @@ export default function CartPage() {
         <CardBody>
           {alert}
           <Table
-            tableHead={[              
+            tableHead={[
               "PRODUCT",
               "PRICE",
 
@@ -321,9 +322,9 @@ export default function CartPage() {
           />
         </CardBody>
         <center>
-            <h4>Total:{total}</h4>
+          <h4>Total:{total}</h4>
         </center>
-        <CardFooter className={classes.justifyContentCenter}>            
+        <CardFooter className={classes.justifyContentCenter}>
           <Button onClick={warningWithConfirmAndCancelMessage} style={{ backgroundColor: "#2ECC40" }} round>
             Pay With Credit Card{" "}
             <KeyboardArrowRight className={classesT.icon} />
@@ -331,9 +332,9 @@ export default function CartPage() {
           <Button onClick={warningWithConfirmAndCancelMessage} style={{ backgroundColor: "#2ECC40" }} round>
             Pay Cash{" "}
             <KeyboardArrowRight className={classesT.icon} />
-          </Button>          
+          </Button>
         </CardFooter>
-      </Card>      
+      </Card>
     );
   };
 
