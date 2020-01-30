@@ -144,7 +144,7 @@ export default function AdminOrders() {
     // const [price, setPrice] = useState([]);
 
     useEffect(() => {
-      axios.get(baseUrl + '/order/all-orders')
+      axios.get(baseUrl2 + '/api/transactions/all-transactions')
         .then(response => {
           console.log(response.data)
           const datos = response.data;
@@ -287,8 +287,11 @@ export default function AdminOrders() {
         <CardBody>
           <Table
             tableHead={[
-              "PRODUCT",
-              "COSTUMER"         
+              "NAME USER",
+              "STATE",
+              "ORDER NUMBER",
+              "VALUE TRANSACTION"
+
             ]}
             tableData={crearData()[0]}            
           />      

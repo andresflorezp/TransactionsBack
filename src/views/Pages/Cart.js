@@ -171,41 +171,25 @@ export default function CartPage() {
     };
     const hideAlertDelete = () => {
       const today = new Date();    
-      window.location="/pay";
-      /*const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + '0' + today.getDate();
-      axios.get(baseUrl + "/cart/obtain-cart/" + localStorage.getItem("mailLogged"))
+      //window.location="/pay";
+      const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + '0' + today.getDate();
+      axios.post(baseUrl2 + "/api/transaction/add-product/" +localStorage.getItem("mailLogged") +"/"+localStorage.getItem("mailLogged")+"/"+total)
         .then(response => {
-          const datosF = response.data;
-          // console.log(datosF)
-          // console.log("PLATOS")
-          // console.log(llenarT(datosF))
-          const platoss = llenarT(datosF);
-          // console.log(platoss)
-          axios.post(baseUrl + '/order/create-order', {
-            fecha: date,
-            carrito: {
-              id: datosF.id,
-              platos: platoss,
-              dueño: localStorage.getItem("mailLogged"),
-              total:total
-            },
-            entregado:false,
-            tipo: localStorage.getItem("decideOrder"),
-            mesa : localStorage.getItem("Mesa")
+          window.location="/user/dashboard";
+          // axios.post(baseUrl + '/cart/empty-cart/' + localStorage.getItem("mailLogged")).then(function (res) {
+          //   setAlert(null);
+          // }).catch(function (er) {
+          //   console.log(er)
+          // });
+        })
+        .catch(function (er) {
+          console.log(er)
+        });
 
-          }).
-            then(function (res1) {
-              axios.post(baseUrl + '/cart/empty-cart/' + localStorage.getItem("mailLogged")).then(function (res) {
-                setAlert(null);
-              }).catch(function (er) {
-                console.log(er)
-              });
-            })
-            .catch(function (er) {
-              console.log(er)
-            });
+        
+              
 
-        });*/
+        
     }
     
     const cancelDetele = () => {
@@ -406,7 +390,10 @@ export default function CartPage() {
           />
         </CardBody>
         <CardFooter className={classes.justifyContentCenter}>
-          <PayPayu/>
+        <Button onClick={warningWithConfirmAndCancelMessage} style={{ backgroundColor: "#2ECC40" }} round>
+            Send To Kitchen{" "}
+            <KeyboardArrowRight className={classesT.icon} />
+          </Button>
           <h4>Total:{total}</h4>
         </CardFooter>
       </Card>
