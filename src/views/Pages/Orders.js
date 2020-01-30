@@ -43,14 +43,14 @@ import InfoIcon from '@material-ui/icons/Info';
 import Snackbar from "components/Snackbar/Snackbar.js";
 
 import AddAlert from "@material-ui/icons/AddAlert";
-const baseUrl = "https://easy-eat-oficial.herokuapp.com"
+const baseUrl = "https://ecommerce-payu.herokuapp.com/"
 const baseUrl2 = "http://localhost:8080"
 const useStyles = makeStyles(styles);
 const useStylesT = makeStyles(stylesT);
 
 
 export default function AdminOrders() {
-  const baseUrl = "https://easy-eat-oficial.herokuapp.com"
+  const baseUrl = "https://ecommerce-payu.herokuapp.com/"
   const baseUrl2 = "http://localhost:8081"
   const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
   setTimeout(function () {
@@ -144,7 +144,7 @@ export default function AdminOrders() {
     // const [price, setPrice] = useState([]);
 
     useEffect(() => {
-      axios.get(baseUrl2 + '/api/transaction/all-transactions')
+      axios.get(baseUrl + '/api/transaction/all-transactions')
         .then(response => {
           console.log(response.data)
           const datos = response.data;

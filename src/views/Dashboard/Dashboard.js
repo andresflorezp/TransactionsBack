@@ -43,7 +43,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import Snackbar from "components/Snackbar/Snackbar.js";
 
 import AddAlert from "@material-ui/icons/AddAlert";
-const baseUrl = "https://easy-eat-oficial.herokuapp.com"
+const baseUrl = "https://ecommerce-payu.herokuapp.com/"
 const baseUrl2 = "http://localhost:8081"
 const useStyles = makeStyles(styles);
 const useStylesT = makeStyles(stylesT);
@@ -65,8 +65,8 @@ function GetPlatos() {
 
 
 export default function MenuPage() {
-  const baseUrl = "https://easy-eat-oficial.herokuapp.com"
-  const baseUrl2 = "http://localhost:8081"
+  const baseUrl = "https://ecommerce-payu.herokuapp.com/"
+  const baseUrl2 = "https://easy-eat-oficial.herokuapp.com"
   const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
   setTimeout(function () {
     setCardAnimation("");
@@ -152,13 +152,13 @@ export default function MenuPage() {
     }
   };
     const addItem = (valor) => {
-      axios.get(baseUrl2 + '/api/product/productName/' + valor)
+      axios.get(baseUrl + '/api/product/productName/' + valor)
         .then(response => {
           const datos = response.data;
           console.log(datos)
           setItems([...items, valor])
           
-          axios.post(baseUrl2 +"/api/cart/add-product/" + localStorage.getItem("mailLogged"), {
+          axios.post(baseUrl +"/api/cart/add-product/" + localStorage.getItem("mailLogged"), {
             name: datos.name,
             category: datos.category,
             description: datos.description,
@@ -186,7 +186,7 @@ export default function MenuPage() {
     // const [price, setPrice] = useState([]);
 
     useEffect(() => {
-      axios.get(baseUrl2 + '/api/product/all-product')
+      axios.get(baseUrl+ '/api/product/all-product')
         .then(response => {
           const datos = response.data;          
           setData(datos);
@@ -212,10 +212,10 @@ export default function MenuPage() {
         const ur = "pass"
         if (data[i].name === null) {
 
-          ur = baseUrl+"/image/files/" + data[i].name
+          ur = baseUrl2+"/image/files/" + data[i].name
         }
         else {
-          ur = baseUrl+"/image/files/" + data[i].name.replaceAll(" ", "")
+          ur = baseUrl2+"/image/files/" + data[i].name.replaceAll(" ", "")
         }
         temp.push(<div className={classesT.imgContainer} key="key">
 

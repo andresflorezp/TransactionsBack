@@ -33,7 +33,7 @@ import AddAlert from "@material-ui/icons/AddAlert";
 const useStyles = makeStyles(styles);
 
 
-const baseUrl = "https://easy-eat-oficial.herokuapp.com"
+const baseUrl = "https://ecommerce-payu.herokuapp.com/"
 const baseUrl2 = "http://localhost:8081"
 function getRandomInt(min, max) {
   min = Math.ceil(min);
@@ -113,7 +113,7 @@ export default function RegisterPage() {
     if (role) {
       val = "ADMIN"
     }
-    axios.post(baseUrl2 + '/api/account/add-account', {
+    axios.post(baseUrl + '/api/account/add-account', {
       email: emailc,
       password: passwordc,
       fullName: namec,
@@ -125,7 +125,7 @@ export default function RegisterPage() {
         // console.log(response);
         // //alert("Se logeo")
         // window.location.assign("/login");
-        axios.post(baseUrl2 + '/api/cart/add-cart', {
+        axios.post(baseUrl + '/api/cart/add-cart', {
           account_id: 2
         })
           .then(function (response) {

@@ -39,7 +39,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { async } from "q";
 import SweetAlert from "react-bootstrap-sweetalert";
 import stylesB from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.js";
-const baseUrl = "https://easy-eat-oficial.herokuapp.com"
+const baseUrl = "https://ecommerce-payu.herokuapp.com/"
 const baseUrl2 = "http://localhost:8080"
 const useStyles = makeStyles(styles);
 const useStylesT = makeStyles(stylesT);

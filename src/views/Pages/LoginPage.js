@@ -25,7 +25,7 @@ import Snackbar from "components/Snackbar/Snackbar.js";
 import "./fuente.css"
 import AddAlert from "@material-ui/icons/AddAlert";
 const baseUrl2 = "http://localhost:8081"
-const baseUrl = "https://easy-eat-oficial.herokuapp.com"
+const baseUrl = "https://ecommerce-payu.herokuapp.com/"
 const useStyles = makeStyles(styles);
 
 
@@ -118,7 +118,7 @@ export default function LoginPage() {
     alert("Quizo hacer login")
     if (email !== "" && psw !== "") {
       
-        axios.get(baseUrl2+'/api/account/isLogin/' + email + "/" + psw).then(function (res) {
+        axios.get(baseUrl+'/api/account/isLogin/' + email + "/" + psw).then(function (res) {
           const datos = res.data;
           console.log(datos)
           localStorage.setItem("mailLogged",email)

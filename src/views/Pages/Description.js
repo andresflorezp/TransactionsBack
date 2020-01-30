@@ -130,7 +130,7 @@ const useStyles2 = makeStyles(theme => ({
 }));
 
 
-const baseUrl = "https://easy-eat-oficial.herokuapp.com"
+const baseUrl = "https://ecommerce-payu.herokuapp.com/"
 const baseUrl2 = "http://localhost:8080"
 function getRandomInt(min, max) {
   min = Math.ceil(min);

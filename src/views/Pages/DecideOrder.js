@@ -26,7 +26,7 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import Typography from '@material-ui/core/Typography';
 import Self from "../images/selforder.png"
 import Pre from "../images/preorder.png"
-const baseUrl = "https://easy-eat-oficial.herokuapp.com"
+const baseUrl = "https://ecommerce-payu.herokuapp.com/"
 const useStyles = makeStyles(styles);
 
 const images = [

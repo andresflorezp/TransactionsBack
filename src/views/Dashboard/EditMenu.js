@@ -42,7 +42,7 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import InfoIcon from '@material-ui/icons/Info';
 import Snackbar from "components/Snackbar/Snackbar.js";
 import AddAlert from "@material-ui/icons/AddAlert";
-const baseUrl = "https://easy-eat-oficial.herokuapp.com"
+const baseUrl = "https://ecommerce-payu.herokuapp.com/"
 const baseUrl2 = "http://localhost:8080"
 const useStyles = makeStyles(styles);
 const useStylesT = makeStyles(stylesT);
@@ -67,7 +67,7 @@ function GetPlatos() {
 
 
 export default function MenuPage() {
-    const baseUrl = "https://easy-eat-oficial.herokuapp.com"
+    const baseUrl = "https://ecommerce-payu.herokuapp.com/"
     const baseUrl2 = "http://localhost:8080"
     const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
     setTimeout(function () {
