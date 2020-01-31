@@ -211,7 +211,8 @@ export default function CartPage() {
       const today = new Date();
       //
       const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + '0' + today.getDate();
-      axios.post(baseUrl3 + "/api/transaction/add-product/" + localStorage.getItem("mailLogged") + "/" + localStorage.getItem("mailLogged") + "/" + total+"/"+creditCard+"/"+cvv+"/"+cardExpiration)
+      var cardExpiration2 = cardExpiration.replace("/","$")
+      axios.post(baseUrl3 + "/api/transaction/add-product/"+ localStorage.getItem("mailLogged") + "/" + localStorage.getItem("mailLogged") + "/" + total+"/"+creditCard+"/"+cvv+"/"+cardExpiration2)
         .then(response => {
           //location.reload();
           console.log(response.data)
