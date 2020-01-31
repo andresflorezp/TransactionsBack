@@ -38,6 +38,7 @@ import Car from "@material-ui/icons/Fastfood";
 import IconButton from '@material-ui/core/IconButton';
 import { async } from "q";
 import SweetAlert from "react-bootstrap-sweetalert";
+import TextField from '@material-ui/core/TextField';
 import stylesB from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.js";
 const baseUrl = "https://ecommerce-payu.herokuapp.com/"
 const baseUrl2 = "http://localhost:8080"
@@ -288,38 +289,12 @@ export default function CartPage() {
           color="info"
 
         >
-          <h2 style={{ color: "#fff", fontFamily: "'Dancing Script'" }} className={classes.cardTitle}>Resume Order<Car style={{ marginLeft: "10px" }} /></h2>
+          <h2 style={{ color: "#fff", fontFamily: "'Dancing Script'" }} className={classes.cardTitle}>Digit Credit Card<Car style={{ marginLeft: "10px" }} /></h2>
 
         </CardHeader>
         <CardBody>
           {alert}
-          <Table
-            tableHead={[
-              "PRODUCT",
-              "PRICE",
-
-            ]}
-            tableData={crearData()}
-            tableShopping
-            customHeadCellClasses={[
-              classes.center,
-              classes.description,
-              classes.description,
-              classes.right,
-              classes.right,
-              classes.right
-            ]}
-            customHeadClassesForCells={[0, 2, 3, 4, 5, 6]}
-            customCellClasses={[
-              classes.tdName,
-              classes.customFont,
-              classes.customFont,
-              classes.tdNumber,
-              classes.tdNumber + " " + classes.tdNumberAndButtonGroup,
-              classes.tdNumber
-            ]}
-            customClassesForCells={[1, 2, 3, 4, 5, 6]}
-          />
+          <TextField id="outlined-basic" label="CreditCard" variant="outlined" />
         </CardBody>
         <center>
           <h4>Total:{total}</h4>
@@ -327,10 +302,6 @@ export default function CartPage() {
         <CardFooter className={classes.justifyContentCenter}>
           <Button onClick={warningWithConfirmAndCancelMessage} style={{ backgroundColor: "#2ECC40" }} round>
             Pay With Credit Card{" "}
-            <KeyboardArrowRight className={classesT.icon} />
-          </Button>
-          <Button onClick={warningWithConfirmAndCancelMessage} style={{ backgroundColor: "#2ECC40" }} round>
-            Pay Cash{" "}
             <KeyboardArrowRight className={classesT.icon} />
           </Button>
         </CardFooter>

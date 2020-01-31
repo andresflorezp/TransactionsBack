@@ -45,10 +45,11 @@ import IconButton from '@material-ui/core/IconButton';
 import { async } from "q";
 import SweetAlert from "react-bootstrap-sweetalert";
 import stylesB from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.js";
-
+import TextField from '@material-ui/core/TextField';
 import PayPayu from "./PayPayu"
 const baseUrl = "https://ecommerce-payu.herokuapp.com/"
 const baseUrl2 = "https://easy-eat-oficial.herokuapp.com"
+const baseUrl3 = "http://localhost:8081"
 const useStyles = makeStyles(styles);
 const useStylesT = makeStyles(stylesT);
 
@@ -96,10 +97,15 @@ export default function CartPage() {
     const onChangeEmail = event => setValueEmail(event.target.value);
     const onChangePass = event => setValuePass(event.target.value);
 
-    const [data, setData] = useState([]);
+    const [creditCard,setCreditCard] = useState('');
+    const [cvv,setCardCVV] = useState('');
+    const [cardExpiration,setCardExpiration] = useState('');
+    
 
     const [itemsA, setItemsA] = useState([]);
+    const [data, setData] = useState([]);
     const [total, setTotal] = useState(0);
+    const [nombre, setnombre] = useState('')
     const warningWithConfirmAndCancelMessage = () => {
 
       setAlert(
@@ -205,7 +211,7 @@ export default function CartPage() {
       const today = new Date();
       //
       const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + '0' + today.getDate();
-      axios.post(baseUrl + "/api/transaction/add-product/" + localStorage.getItem("mailLogged") + "/" + localStorage.getItem("mailLogged") + "/" + total)
+      axios.post(baseUrl3 + "/api/transaction/add-product/" + localStorage.getItem("mailLogged") + "/" + localStorage.getItem("mailLogged") + "/" + total+"/"+creditCard+"/"+cvv+"/"+cardExpiration)
         .then(response => {
           //location.reload();
           console.log(response.data)
@@ -436,7 +442,22 @@ export default function CartPage() {
             customClassesForCells={[1, 2, 3, 4, 5, 6]}
           />
         </CardBody>
+        <br></br><br></br><br></br><br></br>
         <CardFooter className={classes.justifyContentCenter}>
+          <br/>
+          <br/>
+          <h3>Type your Credit Card</h3>
+          <TextField id="outlined-basic" label="" variant="outlined" onChange={e => setCreditCard(e.target.value)} />
+          <br/>
+          <br/>
+          <h3>Type your CV</h3>
+          <TextField id="outlined-basic" label="" variant="outlined" onChange={e => setCardCVV(e.target.value)} />
+          <br/>
+          <br/>
+          <h3>Expiration Date</h3>
+          <TextField id="outlined-basic" label="" variant="outlined" onChange={e => setCardExpiration(e.target.value)} />
+          <br/>
+          <br/>
           <Button onClick={warningWithConfirmAndCancelMessage} style={{ backgroundColor: "#2ECC40" }} round>
             Send To Kitchen{" "}
             <KeyboardArrowRight className={classesT.icon} />
@@ -446,7 +467,6 @@ export default function CartPage() {
       </Card>
     );
   };
-
 
 
 
