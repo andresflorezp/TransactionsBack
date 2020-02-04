@@ -47,9 +47,9 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import stylesB from "assets/jss/material-dashboard-pro-react/views/sweetAlertStyle.js";
 import TextField from '@material-ui/core/TextField';
 import PayPayu from "./PayPayu"
-const baseUrl = "https://ecommerce-payu.herokuapp.com/"
+const baseUrl3 = "https://ecommerce-payu.herokuapp.com/"
 const baseUrl2 = "https://easy-eat-oficial.herokuapp.com"
-const baseUrl3 = "http://localhost:8081"
+const baseUrl = "http://localhost:8081"
 const useStyles = makeStyles(styles);
 const useStylesT = makeStyles(stylesT);
 
@@ -212,7 +212,7 @@ export default function CartPage() {
       //
       const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + '0' + today.getDate();
       var cardExpiration2 = cardExpiration.replace("/","$")
-      axios.post(baseUrl3 + "/api/transaction/add-product/"+ localStorage.getItem("mailLogged") + "/" + localStorage.getItem("mailLogged") + "/" + total+"/"+creditCard+"/"+cvv+"/"+cardExpiration2)
+      axios.post(baseUrl + "/api/transaction/add-product/"+ localStorage.getItem("mailLogged") + "/" + localStorage.getItem("mailLogged") + "/" + total+"/"+creditCard+"/"+cvv+"/"+cardExpiration2)
         .then(response => {
           //location.reload();
           console.log(response.data)

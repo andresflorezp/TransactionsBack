@@ -33,8 +33,8 @@ import AddAlert from "@material-ui/icons/AddAlert";
 const useStyles = makeStyles(styles);
 
 
-const baseUrl = "https://ecommerce-payu.herokuapp.com/"
-const baseUrl2 = "http://localhost:8081"
+const baseUrl2 = "https://ecommerce-payu.herokuapp.com/"
+const baseUrl = "http://localhost:8081"
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);

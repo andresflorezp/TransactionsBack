@@ -226,7 +226,8 @@ const theme = createMuiTheme({
 
 
 const baseUrl = "https://easy-eat-oficial.herokuapp.com"
-const baseUrl2 = "https://ecommerce-payu.herokuapp.com/"
+const baseUrl3 = "https://ecommerce-payu.herokuapp.com/"
+const baseUrl2 = "http://localhost:8081"
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);

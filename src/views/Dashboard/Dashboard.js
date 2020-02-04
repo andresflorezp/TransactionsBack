@@ -65,8 +65,9 @@ function GetPlatos() {
 
 
 export default function MenuPage() {
-  const baseUrl = "https://ecommerce-payu.herokuapp.com/"
+  const baseUrl3 = "https://ecommerce-payu.herokuapp.com/"
   const baseUrl2 = "https://easy-eat-oficial.herokuapp.com"
+  const baseUrl = "http://localhost:8081"
   const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
   setTimeout(function () {
     setCardAnimation("");

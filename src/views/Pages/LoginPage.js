@@ -24,8 +24,8 @@ import ButtonO from '@material-ui/core/Button';
 import Snackbar from "components/Snackbar/Snackbar.js";
 import "./fuente.css"
 import AddAlert from "@material-ui/icons/AddAlert";
-const baseUrl2 = "http://localhost:8081"
-const baseUrl = "https://ecommerce-payu.herokuapp.com/"
+const baseUrl = "http://localhost:8081"
+const baseUrl2 = "https://ecommerce-payu.herokuapp.com/"
 const useStyles = makeStyles(styles);
 
 
