@@ -82,6 +82,24 @@ export default function AdminOrders() {
     const [bl, setBL] = React.useState(false);
     const [bc, setBC] = React.useState(false);
     const [br, setBR] = React.useState(false);
+
+    function doRefund(nameD) {
+      console.log(nameD)
+      axios.put(baseUrl + '/api/transaction/dorefund/' + nameD, {
+
+      })
+          .then(function (response) {
+              console.log(response);
+              alert("Se realizo refud de la compra")
+              showNotification("tc");
+          })
+          .catch(function (error) {
+              console.log(error);
+              showNotification("tl");
+          });
+  }
+
+
     const showNotification = place => {
       switch (place) {
         case "tl":
@@ -179,7 +197,7 @@ export default function AdminOrders() {
       const n = data.length;
       const tabla = []
       const tabla2 = []
-      
+
       const tempAux = []
 
       for (var j = 0; j < n; j++) {
@@ -195,8 +213,8 @@ export default function AdminOrders() {
 
         )
         temp.push(<span key="key2">
-          {data[j].state == "APPROVED" ? <small style={{color:"green"}} className={classesT.tdNumberSmall}>{data[j].state}</small> :<small style={{color:"red"}} className={classesT.tdNumberSmall}>{data[j].state}</small>}
-          
+          {data[j].state == "APPROVED" ? <small style={{ color: "green" }} className={classesT.tdNumberSmall}>{data[j].state}</small> : <small style={{ color: "red" }} className={classesT.tdNumberSmall}>{data[j].state}</small>}
+
         </span>)
         temp.push(<span key="key">
           <a href="#jacket" className={classesT.tdNameAnchor}>
@@ -208,6 +226,16 @@ export default function AdminOrders() {
         temp.push(<span key="key2">
           <small className={classesT.tdNumberSmall}>{data[j].valueTransaction}</small>
         </span>)
+
+        temp.push(<span key="key3">
+          <small className={classesT.tdNumberSmall}>{data[j].transactionId}</small>
+        </span>)
+        if(data[j].state == "APPROVED"){
+            temp.push(<span key="key4">
+            <Button id={data[j].numeroOrden} onClick={(event) => doRefund(event.target.id)} style={{ backgroundColor: "#FF0000" }} round>Refund</Button>
+          </span>)
+        }
+        
         tabla.push(temp)
       }
       //TABLA 1
@@ -237,7 +265,9 @@ export default function AdminOrders() {
                 "NAME USER",
                 "STATE",
                 "ORDER NUMBER",
-                "VALUE TRANSACTION"
+                "VALUE TRANSACTION",
+                "TRANSACTION ID",
+                "REFUND"
 
               ]}
               tableData={crearData()[0]}
